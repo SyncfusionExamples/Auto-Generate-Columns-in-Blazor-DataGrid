@@ -1,0 +1,51 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Grids;
+@using System.ComponentModel.DataAnnotations;
+@using System.ComponentModel;
+
+<SfGrid TValue="OrderDetails" DataSource="@Orders" Toolbar="@(new List<string>() {  "Edit", "Update", "Cancel" })">
+    <GridEditSettings AllowEditing="true" />
+</SfGrid>
+      
+@code
+{
+    public List<OrderDetails>? Orders { get; set; }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Orders = Enumerable.Range(1, 10).Select(x => new OrderDetails()
+        {
+            OrderID = 10240 + x,
+            CustomerName = new string[] { "VINET", "TOSMP", "HANAR", "VICTE" }[new Random().Next(4)],
+            Freight = new float[] { 32.28f, 22.90f, 30.99f, 50.52f }[new Random().Next(4)],
+            ShipCity = new string[] { "Reims", "Munster", "Rio de Janeir", "Lyon" }[new Random().Next(4)],
+            OrderDate = DateTime.Now.AddDays(x),
+        }).ToList();
+    }
+    public class OrderDetails
+    {
+        //Denotes one or more properties that uniquely identify an entity.
+        [Key] 
+        //Sets the header text to the column.
+        [Display(Name = "Order ID", Order = 1)]
+        public int? OrderID { get; set; }
+
+        [Display(Name = "CustomerName")]
+        public string? CustomerName { get; set; }
+
+        //Specifies how data fields are displayed and formatted by ASP.NET dynamic data
+        [DisplayFormat(DataFormatString = "c2")]
+        public float Freight { get; set; }
+
+        //Specifies whether the property this attribute is bound to be read only.
+        [ReadOnly(true)]
+        [Display(Name = "Ship City", AutoGenerateField = true, Order = 3)]
+        public string? ShipCity { get; set; }
+
+        // Indicates whether the data field is editable.
+        [Editable(false)]
+        [Display(Name = "Order Date")]
+        public DateTime? OrderDate { get; set; }
+    }
+}
