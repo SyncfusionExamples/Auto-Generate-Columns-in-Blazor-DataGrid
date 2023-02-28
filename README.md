@@ -2,9 +2,9 @@
 
 A quick-start project that helps you how to Auto Generate Columns in blazor DataGrid and customize using Data annotations. 
 
-Documentation: [https://blazor.syncfusion.com/documentation/datagrid/custom-binding](https://blazor.syncfusion.com/documentation/datagrid/data-annotation)
+Documentation: https://blazor.syncfusion.com/documentation/datagrid/data-annotation
 
-Online examples: [https://blazor.syncfusion.com/demos/datagrid/custom-binding?theme=fluent](https://blazor.syncfusion.com/demos/datagrid/data-annotation?theme=fluent)
+Online examples: https://blazor.syncfusion.com/demos/datagrid/data-annotation?theme=fluent
 
 # Project prerequisites
 Make sure that you have the latest versions of 'Visual Studio 2022' in your machine before starting to work on this project.
