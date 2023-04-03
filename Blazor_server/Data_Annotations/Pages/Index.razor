@@ -14,7 +14,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        Orders = Enumerable.Range(1, 10).Select(x => new OrderDetails()
+        Orders = Enumerable.Range(1, 10).Select(x => new Order()
         {
             OrderID = 10240 + x,
             Name = new string[] { "VINET", "TOSMP", "HANAR", "VICTE" }[new Random().Next(4)],
@@ -28,15 +28,15 @@
         //Denotes one or more properties that uniquely identify an entity.
         [Key] 
         //Sets the header text to the column.
-        [Display(Name = "Order ID", Order = 1)]
+        [Display(Name = "Order ID")]
         public int? OrderID { get; set; }
 
-        [Display(Name = "CustomerName")]
+        [Display(Name = "CustomerName", Order = 1)]
         public string? Name { get; set; }
 
         //Specifies whether the property this attribute is bound to be read only.
         [ReadOnly(true)]
-        [Display(Name = "Ship City", AutoGenerateField = true, Order = 3)]
+        [Display(Name = "Ship City", AutoGenerateField = true)]
         public string? ShipCity { get; set; }
 
         //Specifies how data fields are displayed and formatted by ASP.NET dynamic data
