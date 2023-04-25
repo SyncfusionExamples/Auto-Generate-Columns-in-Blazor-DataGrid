@@ -1,8 +1,8 @@
 ﻿@page "/"
 
 @using Syncfusion.Blazor.Grids;
-@using System.ComponentModel.DataAnnotations;
 @using System.ComponentModel;
+@using System.ComponentModel.DataAnnotations;
 
 <SfGrid TValue="Order" DataSource="@Orders" Toolbar="@(new List<string>() {  "Edit", "Update", "Cancel" })">
     <GridEditSettings AllowEditing="true" />
@@ -11,41 +11,47 @@
 @code
 {
     public List<Order>? Orders { get; set; }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
         Orders = Enumerable.Range(1, 10).Select(x => new Order()
-            {
-                OrderID = 10240 + x,
-                Name = new string[] { "VINET", "TOSMP", "HANAR", "VICTE" }[new Random().Next(4)],
-                Freight = new float[] { 32.28f, 22.90f, 30.99f, 50.52f }[new Random().Next(4)],
-                ShipCity = new string[] { "Reims", "Munster", "Rio de Janeir", "Lyon" }[new Random().Next(4)],
-                OrderDate = DateTime.Now.AddDays(x),
-            }).ToList();
+        {
+            OrderID = 10240 + x,
+            Name = new string[] { "VINET", "TOSMP", "HANAR", "VICTE" }[new Random().Next(4)],
+            Freight = new float[] { 32.28f, 22.90f, 30.99f, 50.52f }[new Random().Next(4)],
+            CustomerID = 10000 + x,
+            ShipCity = new string[] { "Reims", "Munster", "Rio de Janeir", "Lyon" }[new Random().Next(4)],
+            OrderDate = DateTime.Now.AddDays(x)
+        }).ToList();
     }
+
     public class Order
     {
         //Denotes one or more properties that uniquely identify an entity.
         [Key]
-        //Sets the header text to the column.
-        [Display(Name = "Order ID")]
         public int? OrderID { get; set; }
-
-        [Display(Name = "CustomerName", Order = 1)]
-        public string? Name { get; set; }
 
         //Specifies whether the property this attribute is bound to be read only.
         [ReadOnly(true)]
-        [Display(Name = "Ship City", AutoGenerateField = true)]
+        //Sets the header text to the column.
+        [Display(Name = "Customer Name", Order = 1)]
+        public string? Name { get; set; }
+
+        //Gets or sets whether UI should be generated automatically to display this field
+        [Display(AutoGenerateField = false)]
+        public int? CustomerID { get; set; }
+
+        //Gets or sets the order in which this field should be displayed
+        [Display(Order = 4)]
         public string? ShipCity { get; set; }
 
+        [Display(Order = 3)]
         //Specifies how data fields are displayed and formatted by ASP.NET dynamic data
         [DisplayFormat(DataFormatString = "c2")]
         public float Freight { get; set; }
 
-        // Indicates whether the data field is editable.
-        [Editable(false)]
-        [Display(Name = "Order Date")]
+        [Display(Order = 2)]
         public DateTime? OrderDate { get; set; }
     }
 }
