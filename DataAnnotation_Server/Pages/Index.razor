@@ -35,7 +35,7 @@
         //Specifies whether the property this attribute is bound to be read only.
         [ReadOnly(true)]
         //Sets the header text to the column.
-        [Display(Name = "Customer Name", Order = 1)]
+        [Display(Name = "Customer Name", Order = 2)]
         public string? Name { get; set; }
 
         //Gets or sets whether UI should be generated automatically to display this field
@@ -43,15 +43,15 @@
         public int? CustomerID { get; set; }
 
         //Gets or sets the order in which this field should be displayed
-        [Display(Order = 4)]
+        [Display(Order = 1)]
         public string? ShipCity { get; set; }
 
-        [Display(Order = 3)]
+        [Display(Order = 4)]
         //Specifies how data fields are displayed and formatted by ASP.NET dynamic data
         [DisplayFormat(DataFormatString = "c2")]
         public float Freight { get; set; }
 
-        [Display(Order = 2)]
+        [Display(Order = 3)]
         public DateTime? OrderDate { get; set; }
     }
 }
