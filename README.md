@@ -1,4 +1,4 @@
-# Auto Generate Columns in Blazor DataGrid?
+# Auto Generate Columns in Blazor DataGrid
 
 A quick-start project that helps you how to Auto Generate Columns in blazor DataGrid and customize using Data annotations. 
 
